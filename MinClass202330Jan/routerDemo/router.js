@@ -5,7 +5,7 @@ const sql = require('mssql');
 
 const sqlConnect = require('../connectDB/connectDBconfig');
 
-const errMessageConfig = require('../errorMessageManage/err_mess_detail');
+var errMessageConfig = require('../errorMessageManage/err_mess_detail');
 
 
 //GET
@@ -66,6 +66,7 @@ router.post('/multiply', (req, res) => {
      });
 });
 
+// connect to DB
 // ********************************* SQL*************************
 router.get('/connectDB', (req, res) => {
      const sqlConnected = {
@@ -82,7 +83,7 @@ router.get('/connectDB', (req, res) => {
           console.log('DB Connected');
 
           var requestDemo = new sql.Request();
-          requestDemo.query('select top 10 * from ttcibd001999', (error, results) => {
+          requestDemo.query('select top 2 * from ttcibd001999', (error, results) => {
                if (error) throw res.send(error);
                else {
                     if (results.rowsAffected > 0) {
@@ -93,22 +94,27 @@ router.get('/connectDB', (req, res) => {
      });
 });
 
-router.get('/connectDB/TestGet', (req, res) => {
-
-     var requestDemo = new sql.Request(sqlConnect);
-     requestDemo.query('select top 3 * from ttcibd001999', (error, results) => {
+router.get('/connectDB/TestGet1', (req, res) => {
+     sql.connect(sqlConnect, (error) => {
           if (error) throw res.send(error);
-          // if (error) throw res.send(error);
-          else {
-               if (results.rowsAffected > 0) {
-                    res.send(results);
-               }
+          console.log('DB Connected');
+
+          var requestDemo = new sql.Request();
+          requestDemo.query('select top 1 * from ttcibd001999', (error, results) => {
+               if (error) throw res.send(error);
+               // if (error) throw res.send(error);
                else {
-                    // res.send(errMessageConfig.err.err_mess_manage_files);
-                    console.log(errMessageConfig.err_mess_manage_files);
+                    if (results.rowsAffected = 0) {
+                         res.send(results);
+                    }
+                    else {
+                         // res.send(errMessageConfig);
+                         console.log(errMessageConfig);
+                    }
                }
-          }
+          });
      });
+
 });
 
 
