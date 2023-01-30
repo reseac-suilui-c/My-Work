@@ -1,0 +1,77 @@
+import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+
+export default function App() {
+  // create variable for get and set text in textinput
+  const [name, setName] = useState("");
+  const handleIn1 = Event => {
+    setName(event.target.value);
+  };
+  // (store value) set value in variable 'name'
+  const dispValue = () => {
+    name = console.log(name);
+  };
+
+  const [pass, setPass] = useState("");
+  const handleIn2 = Event => {
+    setPass(event.target.value);
+  };
+  const dispVal = () => {
+    pass = console.log(pass);
+  };
+
+  const pressButton = () => {
+    alert("Hello World ===> " + name + "[" + pass + "]" )
+    
+  }
+
+  const clickLink = () => {
+    alert("Link to ===> About" )
+    
+  }
+  function aboutM() {
+    <View style={styles.content}>
+      <Text>
+        <h1>...Fancy About Me...</h1>
+        <p>as each day backs awy, we grow up little by little. courage is knowing what not to tear</p>
+      </Text>
+
+    </View>
+  }
+
+  return (
+    
+    <View style={styles.container}>
+      
+      <Text><h2>***Welcome Back Sir. / Ma'am***</h2></Text>
+      <Text><h3> いらっしゃいませ！ </h3></Text>
+
+      <TextInput placeholder="_______" onChange={handleIn1} style={styles.textInput}></TextInput>
+      <TextInput placeholder="*******" onChange={handleIn2} style={styles.textInput}></TextInput>
+      
+      <Button title="Okay...???" onPress={pressButton}></Button>
+      <Button title="Okay" onPress={clickLink}></Button>
+      <p></p>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textInput: {
+    padding: 10,
+    margin: 15,
+    borderWidth: 1,
+    borderColor: 'red',
+    borderRadius: 5,
+    textAlign: 'center',
+    justifyContent: 'center',
+  },
+});

@@ -1,0 +1,46 @@
+{
+  "name": "rough-charts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "watch": "lerna run --parallel watch",
+    "start": "lerna run --parallel storybook",
+    "build": "lerna run build",
+    "release": "yarn build && lerna publish",
+    "build-storybook": "lerna run build-storybook",
+    "deploy-storybook": "lerna run deploy-storybook"
+  },
+  "devDependencies": {
+    "@storybook/cli": "^5.2.3",
+    "@types/node": "^12.11.1",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "3.0.2",
+    "eslint": "^6.5.1",
+    "eslint-plugin-zero": "^0.0.9",
+    "husky": "^3.0.8",
+    "lerna": "^3.16.4",
+    "microbundle": "0.12.0-next.8",
+    "parcel-bundler": "^1.12.3",
+    "typescript": "^3.6.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "dependencies": {
+    "d3": "^6.2.0",
+    "react-roughjs": "^0.1.3-alpha.0",
+    "roughjs": "^4.3.1"
+  }
+}
