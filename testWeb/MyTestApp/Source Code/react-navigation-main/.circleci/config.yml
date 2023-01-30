@@ -1,0 +1,112 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/project
+    environment:
+      YARN_CACHE_FOLDER: "~/.cache/yarn"
+
+commands:
+  attach_project:
+    steps:
+      - attach_workspace:
+          at: ~/project
+
+jobs:
+  install-dependencies:
+    executor: default
+    steps:
+      - checkout
+      - attach_project
+      - restore_cache:
+          keys:
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      - run:
+          name: Install project dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths: ~/.cache/yarn
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  lint-and-typecheck:
+    executor: default
+    steps:
+      - attach_project
+      - run:
+          name: Lint files
+          command: yarn lint
+      - run:
+          name: Typecheck files
+          command: yarn typescript
+
+  unit-tests:
+    executor: default
+    steps:
+      - attach_project
+      - run:
+          name: Run unit tests
+          command: yarn test --maxWorkers=2 --coverage
+      - run:
+          name: Upload test coverage
+          command: yarn codecov
+      - store_artifacts:
+          path: coverage
+          destination: coverage
+
+  integration-tests:
+    executor: default
+    steps:
+      - attach_project
+      - run:
+          name: Install Headless Chrome dependencies
+          command: |
+            sudo apt-get install -yq \
+            gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
+            libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
+            libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 \
+            libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates \
+            fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+      - run:
+          name: Build example for web
+          command: yarn example expo build:web --no-pwa
+      - run:
+          name: Run integration tests
+          command: yarn example test --maxWorkers=2
+
+  build-packages:
+    executor: default
+    steps:
+      - attach_project
+      - run:
+          name: Build packages in the monorepo
+          command: yarn lerna run prepare
+      - run:
+          name: Verify built type definitions are correct
+          command: yarn typescript
+      - run:
+          name: Verify paths for types
+          command: node scripts/check-types-path.js
+
+workflows:
+  build-and-test:
+    jobs:
+      - install-dependencies
+      - lint-and-typecheck:
+          requires:
+            - install-dependencies
+      - unit-tests:
+          requires:
+            - install-dependencies
+      - integration-tests:
+          requires:
+            - install-dependencies
+      - build-packages:
+          requires:
+            - install-dependencies
