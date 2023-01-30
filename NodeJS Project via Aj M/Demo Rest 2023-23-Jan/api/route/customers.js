@@ -25,7 +25,7 @@ routerD.post('/', (req, res) => {
      // });
 
      res.status(202).json({
-          fname: 'cal Multuply ' + usernameD.username
+          fname: 'name: ' + usernameD.username
      });
 });
 
