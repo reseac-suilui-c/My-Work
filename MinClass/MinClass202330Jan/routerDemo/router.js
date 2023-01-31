@@ -109,7 +109,7 @@ router.get('/connectDB/TestGet1', (req, res) => {
                     }
                     else {
                          // res.send(errMessageConfig);
-                         console.log(errMessageConfig);
+                         console.log(errMessageConfig.err_mess_manage_files);
                     }
                }
           });
