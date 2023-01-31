@@ -62,3 +62,6 @@
 		controllerC
 
 # *************************************************************************
+# command 
+run node nodemon
+run app (interface) yarn run dev 
