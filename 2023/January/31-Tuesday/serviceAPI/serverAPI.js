@@ -2,7 +2,10 @@
 const httpS = require('http');
 const portS = process.env.portS || 1000;
 
-const startedSV = httpS.createServer();
+const appIndex = require('./indexAPI');
+
+// const startedSV = httpS.createServer();
+const startedSV = httpS.createServer(appIndex);
 
 startedSV.listen(portS);
 

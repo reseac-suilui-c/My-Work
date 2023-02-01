@@ -23,7 +23,7 @@ export default function App() {
   // }
 
   const useCalGet = () => {
-    callFunctionGet().then((resultGet) => {
+    callFunctionGet(dataIN).then((resultGet) => {
       setVar(resultGet)
     });
   }
@@ -32,7 +32,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Welcome..... to my world 🐼</Text>
 
-      <Text>{JSON.stringify(values)}</Text>
+      <Text>*** {JSON.stringify(values)} ***</Text>
 
       <Button onPress={() => useCalGet()}>*🧧*</Button>
 
