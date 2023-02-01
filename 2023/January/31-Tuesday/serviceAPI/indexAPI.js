@@ -4,6 +4,8 @@ const bosyPS = require('body-parser');
 
 const importRoute = require('./Router/routeAPI');
 
+
+indexAPI.use(bosyPS.json());
 // ***********************************************************
 indexAPI.use(function (req, res, next) {
         res.setHeader('Access-Control-Allow-Origin', '*')
@@ -14,8 +16,6 @@ indexAPI.use(function (req, res, next) {
         next()
 })
 // ***********************************************************
-
-indexAPI.use(bosyPS.json());
 indexAPI.use('/', importRoute);
 
 
