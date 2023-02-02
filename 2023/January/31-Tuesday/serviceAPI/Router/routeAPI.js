@@ -5,7 +5,7 @@ const routeAPI = expressRoute.Router();
 //         res.send(req.query);
 // });
 
-routeAPI.get('/', (req, res) => {
+routeAPI.get('/addVal', (req, res) => {
         let x = req.query.A;
         let y = req.query.B;
         var resultsM = x + y;
