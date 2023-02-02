@@ -22,23 +22,21 @@ var setHost = process.env.setHost || 'http://localhost:19006'
 //                 console.log(err_res);
 //         });
 
-export const callFuncGet = (dataJson) =>
 
-        fetch(setHost + '/calGet?A=' + dataJson.A + '&B=' + dataJson.B, {
+export const callFetchGet = (dataJson) =>
+
+        fetch(setHost + '/testfunc?A=' + dataJson.A + '&B=' + dataJson.B, {
                 // fetch(host + '/add2func', {
                 method: "GET",
                 headers: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
-                }
-        })
-                .then((response) => response.json())
-                .then((responseJson) => {
-                        console.log(responseJson);
-                        return responseJson;
-                })
-                .catch((error) => { console.error(error); });
-
+                },
+        }).then((response) => response.json()).then((json) => {
+                return json;
+        }).catch((error) => {
+                console.error(error);
+        }).finally();
 
 // export const callFunctionGet = (dataIn) =>
 //         fetch(setHost + '/calGet?A=' + dataIn.A + '&B=' + dataIn.B, {
@@ -72,17 +70,17 @@ export const callAxiosGetA = (dataIn) =>
         })
 // ****************************************************************************
 // post
-export const callFunctionPost = () =>
-        fetch(setHost + '/', {
-                method: "POST",
-                headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                },
-        }).then((resCalP) => resCalP.json()).then((returnRes) => {
-                return returnRes;
-        }).catch((err_res) => {
-                console.log(err_res);
-        });
+// export const callFunctionPost = () =>
+//         fetch(setHost + '/', {
+//                 method: "POST",
+//                 headers: {
+//                         Accept: "application/json",
+//                         "Content-Type": "application/json",
+//                 },
+//         }).then((resCalP) => resCalP.json()).then((returnRes) => {
+//                 return returnRes;
+//         }).catch((err_res) => {
+//                 console.log(err_res);
+//         });
 
 // ****************************************************************************
