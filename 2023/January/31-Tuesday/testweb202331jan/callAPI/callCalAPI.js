@@ -22,36 +22,27 @@ var setHost = process.env.setHost || 'http://localhost:19006'
 //                 console.log(err_res);
 //         });
 
+export const callFetchGet = (dataJson) => {
+        alert('in : callFetchGet ' + dataJson.A + dataJson.B);
 
-export const callFetchGet = (dataJson) =>
-
-        fetch(setHost + '/testfunc?A=' + dataJson.A + '&B=' + dataJson.B, {
-                // fetch(host + '/add2func', {
+        fetch(setHost + '/get?A=' + dataJson.A + '&B=' + dataJson.B, {
                 method: "GET",
-                headers: {
+                header: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
+                        "Cache- Control": "public",
                 },
-        }).then((response) => response.json()).then((json) => {
-                return json;
+        }).then((response) => {
+                console.log((response.json()));
+                // response.json();
+        }).then((data) => {
+                return data;
         }).catch((error) => {
-                console.error(error);
-        }).finally();
+                console.log(error);
+        });
+}
 
-// export const callFunctionGet = (dataIn) =>
-//         fetch(setHost + '/calGet?A=' + dataIn.A + '&B=' + dataIn.B, {
-//                 method: "GET",
-//                 headers: {
-//                         Accept: "application/json",
-//                         "Content-Type": "application/json",
-//                 },
-//         }).then((resCalGet) => resCalGet.json()).then((returnRes) => {
-//                 return returnRes;
-//         }).catch((err) => {
-//                 console.log(err);
-//         });
-
-export const callAxiosGetA = (dataIn) =>
+export const callAxiosGetA = (dataIn) => {
         callAxios({
                 method: 'get',
                 // url: host + '/add2func?a=' + data.a + '&b=' + data.b,
@@ -66,8 +57,10 @@ export const callAxiosGetA = (dataIn) =>
                 },
                 responseType: 'json'
         }).then((result) => {
-                return result.dataIn
+                return result.dataIn;
         })
+}
+
 // ****************************************************************************
 // post
 // export const callFunctionPost = () =>
