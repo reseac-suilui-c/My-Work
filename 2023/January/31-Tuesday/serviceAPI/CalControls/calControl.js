@@ -1,7 +1,8 @@
 // GET
 exports.getAdd = function () {
      return function (req, res, next) {
-          var resultsAdd = req.query.x + req.query.y;
+          // var resultsAdd = req.query.x + req.query.y;
+          var resultsAdd = parseInt(req.query.A) + parseInt(req.query.B);
           req.addCal = resultsAdd;
           next();
      };
@@ -9,7 +10,8 @@ exports.getAdd = function () {
 
 exports.getSubtraction = function () {
      return function (req, res, next) {
-          var resultsSub = req.query.x - req.query.y;
+          // var resultsSub = req.query.x - req.query.y;
+          var resultsSub = parseInt(req.query.A) - parseInt(req.query.B);
           req.subCal = resultsSub;
           next();
      };
@@ -17,7 +19,7 @@ exports.getSubtraction = function () {
 
 exports.getMultiply = function () {
      return function (req, res, next) {
-          var resultsMultiply = req.query.x / req.query.y;
+          var resultsMultiply = parseInt(req.query.A) / parseInt(req.query.B);
           req.multiplyCal = resultsMultiply;
           next();
      };

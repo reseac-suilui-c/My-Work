@@ -17,31 +17,31 @@ const imErrMess = require('../errorMessageManage/err_messages');
 // });
 // });
 
-router.get('/', (req, res) => {
+routeAPI.get('/', (req, res) => {
         // res.send("Test Get!");
-        res.send([{ 'value': "Test Get!" }])
+        res.send([{ 'value': "Test Get!" }]);
 });
 
-router.post('/', (req, res) => {
+routeAPI.post('/', (req, res) => {
         // res.send("Test POST!");
-        res.send([{ 'value': "Test POST!" }])
+        res.send([{ 'value': "Test POST!" }]);
 });
 
 // *********************************************************************************************
 //GET
-router.get('/calAddGet', (req, res) => {
+routeAPI.get('/calGetAddN', (req, res) => {
         // let x = req.query.x;
         // let y = req.query.y;
-        let x = req.query.A;
-        let y = req.query.B;
+        let x = (req.query.A);
+        let y = (req.query.B);
         var resultsAdd = x + y;
         // res.send('In Area : calAdd : ' + resultsAdd);
         res.send({
-                Add: req.addCal
+                Add: resultsAdd
         });
 });
 
-router.get('/calMultiplyGet', (req, res) => {
+routeAPI.get('/calMultiplyGet', (req, res) => {
         // let x = req.query.x;
         // let y = req.query.y;
         let x = req.query.A;
@@ -52,23 +52,25 @@ router.get('/calMultiplyGet', (req, res) => {
         });
 });
 
-router.get('/calGetAdd', calCont.getAdd(), (req, res) => {
+routeAPI.get('/calGetAdd', imCalControl.getAdd(), (req, res) => {
         res.send({
                 Add: req.addCal
         });
 });
 
-router.get('/calGetTotal', calCont.getAdd(), calCont.getSubtraction(), calCont.getMultiply(), (req, res) => {
-        res.send({
-                Add: req.addCal,
-                Sub: req.subCal,
-                Multiply: req.multiplyCal
+routeAPI.get('/calGetTotal', imCalControl.getAdd(),
+        imCalControl.getSubtraction(),
+        imCalControl.getMultiply(), (req, res) => {
+                res.send({
+                        Add: req.addCal,
+                        Sub: req.subCal,
+                        Multiply: req.multiplyCal
+                });
         });
-});
 
 // *********************************************************************************************
 // POST
-router.post('/calMultiplyPost', (req, res) => {
+routeAPI.post('/calMultiplyPost', (req, res) => {
         var svar = req.body.svar;
         var zvar = req.body.zvar;
         var resultsMultiply = svar / zvar;
@@ -79,20 +81,24 @@ router.post('/calMultiplyPost', (req, res) => {
         });
 });
 
-router.post('/calSubPost', calCont.postAdd(), calCont.postSubtraction(), (req, res) => {
-        res.send({
-                Sub: req.subCal
+routeAPI.post('/calSubPost',
+        imCalControl.postAdd(),
+        imCalControl.postSubtraction(), (req, res) => {
+                res.send({
+                        Sub: req.subCal
+                });
+                // res.send(req.body);
         });
-        // res.send(req.body);
-});
 
-router.post('/calTotalPost', calCont.postAdd(), calCont.postSubtraction(), (req, res) => {
-        res.send({
-                Add: req.addCal,
-                Sub: req.subCal
+routeAPI.post('/calTotalPost',
+        imCalControl.postAdd(),
+        imCalControl.postSubtraction(), (req, res) => {
+                res.send({
+                        Add: req.addCal,
+                        Sub: req.subCal
+                });
+                // res.send(req.body);
         });
-        // res.send(req.body);
-});
 
 
 module.exports = routeAPI;

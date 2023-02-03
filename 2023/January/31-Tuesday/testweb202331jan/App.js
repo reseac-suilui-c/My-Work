@@ -5,7 +5,7 @@ import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 import { createRoot } from 'react-dom/client';
 
 // import file API
-import { callAxiosGetA, callFetchGet } from './callAPI/callCalAPI'
+import { callAxiosGetA, callFetchGet, callGet, callAddGet, callAddGetN } from './callAPI/callCalAPI'
 
 const App = () => {
   const [values, setVal] = React.useState();
@@ -16,13 +16,26 @@ const App = () => {
   }
 
   const useCalGet = () => {
-    callFetchGet(dataIN).then((resultGet) => {
-      // callFuncGet(dataIN).then((resultGet) => {
-      console.log(dataIN);
-      setVal(resultGet)
+    callGet().then((resultGet) => {
+      setVal(resultGet);
+      console.log(resultGet);
     })
   }
 
+  const useCalAddGet = () => {
+    callAddGet(dataIN).then((resultGet) => {
+      setVal(resultGet);
+      console.log(resultGet);
+    })
+  }
+
+  const useCalAddGetN = () => {
+    callAddGetN(dataIN).then((resultGet) => {
+      setVal(resultGet);
+      console.log(resultGet);
+    })
+  }
+  // ******** axios *******
   const useCalAxsGet = () => {
     callAxiosGetA(dataIN).then((resultGet) => {
       setVal(resultGet)
@@ -31,7 +44,6 @@ const App = () => {
   // *******************************************************
   var simpleAlertFunction = () => {
     //function to make simple alert
-    useCalAxsGet();
     alert('alerted!!! ' + JSON.stringify(dataIN));
   }
   // *******************************************************
@@ -40,17 +52,17 @@ const App = () => {
     <View style={styles.body}>
       <View style={styles.container}>
         <Text>  Welcome..... to my world  </Text>
-        <Text>{JSON.stringify(values)}</Text>
       </View>
 
       <View style={styles.buttonX}>
-        <div>result:  <Text>{JSON.stringify(dataIN)}</Text> </div>
-        <div>result_G:  <Text>{JSON.stringify(values)}</Text> </div>
+        <div><Text>result:  {JSON.stringify(dataIN)}</Text> </div>
+        <div><Text>result_G:  {JSON.stringify(values)}</Text> </div>
       </View>
-
-      <div style={styles.buttonY}><Button title="Chase Mew" onPress={() => useCalGet()} ></Button></div>
-
       <div ><Button title={' ** Mew Mew ** '} onPress={() => simpleAlertFunction()} /></div>
+      <div><Text></Text></div>
+      <div style={styles.buttonY}><Button title="Chase Mew" onPress={() => useCalGet()} ></Button></div>
+      <div style={styles.buttonY}><Button title="Mew Add Get" onPress={() => useCalAddGet()} ></Button></div>
+      <div style={styles.buttonY}><Button title="Mew Add GetN" onPress={() => useCalAddGetN()} ></Button></div>
 
       <StatusBar style="auto" />
     </View >

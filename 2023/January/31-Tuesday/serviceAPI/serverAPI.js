@@ -1,6 +1,6 @@
 
 const httpS = require('http');
-const portS = process.env.portS || 19006;
+const portS = process.env.portS || 3000;
 
 const appIndex = require('./indexAPI');
 

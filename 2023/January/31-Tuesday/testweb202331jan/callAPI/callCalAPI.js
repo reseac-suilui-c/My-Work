@@ -1,7 +1,7 @@
 // function calculator
 const callAxios = require('axios').default;
 // set host value
-var setHost = process.env.setHost || 'http://localhost:19006'
+var setHost = process.env.setHost || 'http://localhost:3000'
 
 // get
 // syntax
@@ -27,12 +27,42 @@ export const callGet = () => {
                 header: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
-                        "Cache- Control": "public",
+                        // "Cache- Control": "public",
                 },
-        }).then((response) => {
-                console.log((response.json()));
-                // response.json();
-        }).then((data) => {
+        }).then((response) => response.json()).then((data) => {
+                return data;
+        }).catch((error) => {
+                console.log(error);
+        });
+}
+export const callAddGetN = (dataJson) => {
+        alert('in : calAddGetN ' + dataJson.A + dataJson.B);
+
+        fetch(setHost + '/calGetAdd?A=' + dataJson.A + '&B=' + dataJson.B, {
+                method: "GET",
+                header: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                        // "Cache- Control": "public",
+                },
+        }).then((response) => response.json()).then((data) => {
+                return data;
+        }).catch((error) => {
+                console.log(error);
+        });
+}
+
+export const callAddGet = (dataJson) => {
+        alert('in : calAddGet ' + dataJson.A + dataJson.B);
+
+        fetch(setHost + '/calGetAdd?A=' + dataJson.A + '&B=' + dataJson.B, {
+                method: "GET",
+                header: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                        // "Cache- Control": "public",
+                },
+        }).then((response) => response.json()).then((data) => {
                 return data;
         }).catch((error) => {
                 console.log(error);
