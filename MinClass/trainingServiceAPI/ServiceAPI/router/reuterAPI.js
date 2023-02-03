@@ -19,7 +19,7 @@ router.get('/add2func',
         res.send({
             add: req.add,
             negative: req.negative,
-            totla: req.total,
+            total: req.total,
             input: req.query
         })
     })
@@ -59,7 +59,7 @@ router.post('/',
         // res.send(req.body)
         // req.body
         // var result = parseInt(req.body.A) + parseInt(req.body.B)
-        res.send( res.send([{ 'value': "Test POST Service File -> " }]));
+        res.send(res.send([{ 'value': "Test POST Service File -> " }]));
         // res.send({
         //     add: req.add,
         //     negative: req.negative,

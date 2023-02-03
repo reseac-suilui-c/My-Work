@@ -31,7 +31,8 @@ const App = () => {
   // *******************************************************
   var simpleAlertFunction = () => {
     //function to make simple alert
-    Alert.alert('Alert Title', 'This is Simple Alert');
+    useCalAxsGet();
+    alert('alerted!!! ' + JSON.stringify(dataIN));
   }
   // *******************************************************
 
@@ -47,12 +48,9 @@ const App = () => {
         <div>result_G:  <Text>{JSON.stringify(values)}</Text> </div>
       </View>
 
-      <div style={styles.buttonY}>
-        <Button onPress={() => useCalGet()} title="Chase Mew" ></Button>
-      </div>
-      {/* <Button onPress={useCalGet} title=" -- Chase Mew -- " ></Button> */}
+      <div style={styles.buttonY}><Button title="Chase Mew" onPress={() => useCalGet()} ></Button></div>
 
-      <div ><Button title={' ** Mew Mew ** '} onPress={() => alert('alerted!!! ' + JSON.stringify(dataIN))} /></div>
+      <div ><Button title={' ** Mew Mew ** '} onPress={() => simpleAlertFunction()} /></div>
 
       <StatusBar style="auto" />
     </View >
