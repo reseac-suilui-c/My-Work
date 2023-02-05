@@ -22,6 +22,9 @@ var setHost = process.env.setHost || 'http://localhost:3000'
 //                 console.log(err_res);
 //         });
 export const callGet = () => {
+        // alert('in : tt-- ' );
+        console.log('ggggggg');
+
         fetch(setHost + '/', {
                 method: "GET",
                 header: {
@@ -30,13 +33,17 @@ export const callGet = () => {
                         // "Cache- Control": "public",
                 },
         }).then((response) => response.json()).then((data) => {
+                // }).then((data) => {
+                // console.log(data);
+                // alert(JSON.stringify(data));
+                // alert(data);
                 return data;
         }).catch((error) => {
                 console.log(error);
         });
 }
 export const callAddGetN = (dataJson) => {
-        alert('in : calAddGetN ' + dataJson.A + dataJson.B);
+        alert('in : calAddGetN || A=' + dataJson.A + '&B=' + dataJson.B);
 
         fetch(setHost + '/calGetAdd?A=' + dataJson.A + '&B=' + dataJson.B, {
                 method: "GET",
@@ -46,6 +53,9 @@ export const callAddGetN = (dataJson) => {
                         // "Cache- Control": "public",
                 },
         }).then((response) => response.json()).then((data) => {
+        // }).then((data) => {
+                // console.log(data);
+                // alert(JSON.stringify(data));
                 return data;
         }).catch((error) => {
                 console.log(error);
@@ -107,6 +117,7 @@ export const callAxiosGetA = (dataIn) => {
                 return result.dataIn;
         })
 }
+
 
 // ****************************************************************************
 // post

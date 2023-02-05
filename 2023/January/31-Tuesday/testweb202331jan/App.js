@@ -12,28 +12,31 @@ const App = () => {
 
   var dataIN = {
     A: 5,
-    B: 2
+    B: 2,
+    // "A": 5,
+    // "B": 2
   }
 
+
   const useCalGet = () => {
-    callGet().then((resultGet) => {
-      setVal(resultGet);
-      console.log(resultGet);
-    })
+    callGet();
+    // callGet().then(() => {
+    //   setVal();
+    //   // console.log(resultGet);
+    // })
   }
 
   const useCalAddGet = () => {
-    callAddGet(dataIN).then((resultGet) => {
-      setVal(resultGet);
-      console.log(resultGet);
-    })
+    var xxx = callAddGet(dataIN);
+    setVal(xxx);
+    console.log(JSON.stringify(xxx));
   }
 
   const useCalAddGetN = () => {
     callAddGetN(dataIN).then((resultGet) => {
       setVal(resultGet);
       console.log(resultGet);
-    })
+    });
   }
   // ******** axios *******
   const useCalAxsGet = () => {
@@ -58,8 +61,8 @@ const App = () => {
         <div><Text>result:  {JSON.stringify(dataIN)}</Text> </div>
         <div><Text>result_G:  {JSON.stringify(values)}</Text> </div>
       </View>
-      <div ><Button title={' ** Mew Mew ** '} onPress={() => simpleAlertFunction()} /></div>
-      <div><Text></Text></div>
+      {/* <div ><Button title={' ** Mew Mew ** '} onPress={() => simpleAlertFunction()} /></div> */}
+      <div><Text>===================================</Text></div>
       <div style={styles.buttonY}><Button title="Chase Mew" onPress={() => useCalGet()} ></Button></div>
       <div style={styles.buttonY}><Button title="Mew Add Get" onPress={() => useCalAddGet()} ></Button></div>
       <div style={styles.buttonY}><Button title="Mew Add GetN" onPress={() => useCalAddGetN()} ></Button></div>
