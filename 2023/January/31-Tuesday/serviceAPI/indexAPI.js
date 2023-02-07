@@ -14,7 +14,7 @@ indexAPI.use(function (req, res, next) {
         res.setHeader('Access-Control-Allow-Headers', '*', 'Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization, X-Access-Token')
         res.setHeader('Access-Control-Allow-Credentials', true)
         next()
-})
+});
 // ***********************************************************
 indexAPI.use('/', importRoute);
 

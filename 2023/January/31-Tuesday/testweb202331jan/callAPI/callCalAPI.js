@@ -4,44 +4,43 @@ const callAxios = require('axios').default;
 var setHost = process.env.setHost || 'http://localhost:3000'
 
 // get
-// syntax
-// data type [name func] = () =>
-// fetch(path, {json data
-// }).then((variable) => variable.json() [**create var for collect data in json format**] ).then([**convert variable to use for Export**]  (var return) => {
-//      retuen var return; } ).catch( (var error) => { //* log or anything *//});
-// export const callFunctionGet = () =>
-//         fetch(setHost + '/', {
-//                 method: "GET",
-//                 headers: {
-//                         Accept: "application/json",
-//                         "Content-Type": "application/json",
-//                 },
-//         }).then((resCalGet) => resCalGet.json()).then((returnRes) => {
-//                 return returnRes;
-//         }).catch((err_res) => {
-//                 console.log(err_res);
-//         });
 export const callGet = () => {
-        // alert('in : tt-- ' );
-        console.log('ggggggg');
-
         fetch(setHost + '/', {
                 method: "GET",
-                header: {
+                headers: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
-                        // "Cache- Control": "public",
                 },
-        }).then((response) => response.json()).then((data) => {
-                // }).then((data) => {
-                // console.log(data);
-                // alert(JSON.stringify(data));
-                // alert(data);
-                return data;
+        }).then((response) => response.json()).then((json) => {
+                console.log(JSON.stringify(json));
+                // console.log((json));
+                return json;
+                // }).then((json) => {
+                //         console.log((json));
+                //         return json;
         }).catch((error) => {
                 console.log(error);
         });
 }
+// export const callGet = () => {
+//         // alert('in : tt-- ' );
+//         fetch(setHost + '/', {
+//                 method: "GET",
+//                 header: {
+//                         Accept: "application/json",
+//                         "Content-Type": "application/json",
+//                         // "Cache- Control": "public",
+//                 },
+//         }).then((response) => response.json()).then((data) => {
+//                 // }).then((data) => {
+//                 console.log(JSON.stringify(data));
+//                 // alert(data);
+//                 return data;
+//         }).catch((error) => {
+//                 console.log(error);
+//         });
+// }
+
 export const callAddGetN = (dataJson) => {
         alert('in : calAddGetN || A=' + dataJson.A + '&B=' + dataJson.B);
 
@@ -53,7 +52,7 @@ export const callAddGetN = (dataJson) => {
                         // "Cache- Control": "public",
                 },
         }).then((response) => response.json()).then((data) => {
-        // }).then((data) => {
+                // }).then((data) => {
                 // console.log(data);
                 // alert(JSON.stringify(data));
                 return data;

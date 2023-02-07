@@ -11,6 +11,7 @@ export const testFetchGetA = () =>
             "Content-Type": "application/json",
         },
     }).then((response) => response.json()).then((json) => {
+        console.log(JSON.stringify(json));
         return json;
     }).catch((error) => {
         console.error(error);
@@ -25,7 +26,7 @@ export const testFetchGetAAdd2Func = (dataJson) =>
             Accept: "application/json",
             "Content-Type": "application/json",
         }
-    }).then( (response) => response.json() ).then( (json) => {
+    }).then((response) => response.json()).then((json) => {
         return json;
     }).catch((error) => {
         console.error(error);

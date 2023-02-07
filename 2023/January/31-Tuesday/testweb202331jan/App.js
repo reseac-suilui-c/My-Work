@@ -8,7 +8,7 @@ import { createRoot } from 'react-dom/client';
 import { callAxiosGetA, callFetchGet, callGet, callAddGet, callAddGetN } from './callAPI/callCalAPI'
 
 const App = () => {
-  const [values, setVal] = React.useState();
+  const [values, setVal] = React.useState([]);
 
   var dataIN = {
     A: 5,
@@ -19,17 +19,18 @@ const App = () => {
 
 
   const useCalGet = () => {
-    callGet();
-    // callGet().then(() => {
-    //   setVal();
-    //   // console.log(resultGet);
-    // })
+    // callGet().then((result) => {
+    //   setValue(result)
+    //   console.log(JSON.stringify(result));
+    // });
+    callGet().then((result) => { setVal(result) });
+
   }
 
   const useCalAddGet = () => {
-    var xxx = callAddGet(dataIN);
-    setVal(xxx);
-    console.log(JSON.stringify(xxx));
+    var result = callAddGet(dataIN);
+    setVal(result);
+    console.log(JSON.stringify(result));
   }
 
   const useCalAddGetN = () => {
@@ -58,12 +59,12 @@ const App = () => {
       </View>
 
       <View style={styles.buttonX}>
-        <div><Text>result:  {JSON.stringify(dataIN)}</Text> </div>
-        <div><Text>result_G:  {JSON.stringify(values)}</Text> </div>
+        <div><Text>result:  {JSON.stringify(dataIN)} </Text> </div>
+        <div><Text>result_G:  {values} </Text> </div>
       </View>
       {/* <div ><Button title={' ** Mew Mew ** '} onPress={() => simpleAlertFunction()} /></div> */}
       <div><Text>===================================</Text></div>
-      <div style={styles.buttonY}><Button title="Chase Mew" onPress={() => useCalGet()} ></Button></div>
+      <div style={styles.buttonY}><Button title="Chase Mew Get" onPress={() => useCalGet()} ></Button></div>
       <div style={styles.buttonY}><Button title="Mew Add Get" onPress={() => useCalAddGet()} ></Button></div>
       <div style={styles.buttonY}><Button title="Mew Add GetN" onPress={() => useCalAddGetN()} ></Button></div>
 

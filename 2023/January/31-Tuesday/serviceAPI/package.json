@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "body-parser": "^1.20.1",
+    "expo": "^47.0.13",
     "express": "^4.18.2"
   },
   "name": "serviceapi",
@@ -11,7 +12,7 @@
   "main": "serverAPI.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon serverAPI.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",

@@ -19,8 +19,8 @@ const imErrMess = require('../errorMessageManage/err_messages');
 
 routeAPI.get('/', (req, res) => {
         // res.send("Test Get!");
-        res.send({ 'value': "Test Get!" });
-        // res.send([{ 'value': "Test Get!" }]);
+        // res.send({ 'value': "Test Get!" });
+        res.send([{ 'value': "Test Get!" }]);
 });
 
 routeAPI.post('/', (req, res) => {
