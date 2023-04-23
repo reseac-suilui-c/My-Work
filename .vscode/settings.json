@@ -1,5 +1,6 @@
 {
-        "editor.fontSize": 16,
-        "editor.tabSize": 8,
-        "editor.fontFamily": "'IBM Plex Sans Thai', sans-serif"
+        "editor.fontSize": 18,
+        "editor.tabSize": 5,
+        "editor.fontFamily": "Consolas, 'Courier New', monospace",
+        "files.autoSave": "afterDelay"
 }
