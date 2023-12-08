@@ -1,5 +1,5 @@
 {
-        "editor.fontSize": 18,
+        "editor.fontSize": 12,
         "editor.tabSize": 5,
         "editor.fontFamily": "Consolas, 'Courier New', monospace",
         "files.autoSave": "afterDelay"
