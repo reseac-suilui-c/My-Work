@@ -22,4 +22,23 @@ router.get("/posts/:id", async (req, res) => {
 	res.send(post)
 })
 
+router.patch("/posts/:id", async (req, res) => {
+	try {
+		const post = await Post.findOne({ _id: req.params.id })
+
+		if (req.body.title) {
+			post.title = req.body.title
+		}
+
+		if (req.body.content) {
+			post.content = req.body.content
+		}
+
+		await post.save()
+		res.send(post)
+	} catch {
+		res.status(404)
+		res.send({ error: "Post doesn't exist!" })
+	}
+})
 module.exports = router
