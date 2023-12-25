@@ -4,7 +4,7 @@ const     routes = require("./routes")
 
 const     app = express()
 app.use("/api", routes)
-app.listen( 5000, () => {console.log("Server has started!!")} )
+app.listen(process.env.PORT || 5000, () => {console.log("Server has started!!")} )
 
 // Connnect to Mongoose
 // mongoose
